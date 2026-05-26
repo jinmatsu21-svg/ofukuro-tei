@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おふくろ亭 ｜ 地域の手作り惣菜・弁当店</title>
+<style>
+  :root {
+    --orange: #E8743C;
+    --orange-deep: #C5571F;
+    --cream: #FFF8F1;
+    --ink: #3A2A1F;
+    --muted: #6B5B50;
+    --line: #F0E2D2;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.7;
+  }
+
+  h1, h2, h3 { margin: 0; line-height: 1.3; }
+
+  a { color: inherit; }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== Header ===== */
+  header.site {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 248, 241, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+  }
+  header.site .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  header.site .logo {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--orange-deep);
+    letter-spacing: 0.05em;
+  }
+  header.site nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  header.site nav a:hover { color: var(--orange-deep); }
+
+  /* ===== Hero ===== */
+  .hero {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(232, 116, 60, 0.18), transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(197, 87, 31, 0.18), transparent 55%),
+      linear-gradient(180deg, #FFF1E1 0%, var(--cream) 100%);
+    padding: 96px 0 88px;
+    text-align: center;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: #fff;
+    color: var(--orange-deep);
+    border: 1px solid var(--orange);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .hero h1 .accent { color: var(--orange-deep); }
+  .hero p.lead {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 620px;
+    margin: 0 auto 32px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 36px;
+    border-radius: 999px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 6px 18px rgba(197, 87, 31, 0.25);
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover {
+    background: var(--orange-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(197, 87, 31, 0.35);
+  }
+
+  /* ===== Sections ===== */
+  section {
+    padding: 80px 0;
+  }
+  section h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+  section .sub {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 48px;
+    font-size: 0.95rem;
+  }
+
+  /* ===== Features ===== */
+  .features .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .feature-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(58, 42, 31, 0.08);
+  }
+  .feature-card .icon {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+  }
+  .feature-card h3 {
+    font-size: 1.15rem;
+    color: var(--orange-deep);
+    margin-bottom: 10px;
+  }
+  .feature-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* ===== Menu ===== */
+  .menu {
+    background: #fff;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .menu .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .menu-card {
+    border: 1px solid var(--orange);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  .menu-card .photo {
+    height: 140px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .menu-card .body {
+    padding: 20px 22px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .menu-card h3 {
+    font-size: 1.45rem;
+    margin-bottom: 10px;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .menu-card .desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    flex: 1;
+    margin: 0 0 14px;
+  }
+  .menu-card .price {
+    color: var(--orange-deep);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  /* ===== Contact ===== */
+  .contact .form {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 32px;
+  }
+  .contact label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .contact input,
+  .contact textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-bottom: 18px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .contact input:focus,
+  .contact textarea:focus {
+    outline: none;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(232, 116, 60, 0.15);
+  }
+  .contact textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  .contact .submit-wrap {
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  /* ===== Footer ===== */
+  footer.site {
+    background: var(--ink);
+    color: #F4E6D7;
+    padding: 48px 0 28px;
+    font-size: 0.92rem;
+  }
+  footer.site .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  footer.site h4 {
+    color: var(--orange);
+    font-size: 0.95rem;
+    margin: 0 0 10px;
+    letter-spacing: 0.05em;
+  }
+  footer.site p { margin: 4px 0; color: #E8D6C4; }
+  footer.site .copy {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 36px;
+    padding-top: 18px;
+    text-align: center;
+    color: #B8A493;
+    font-size: 0.82rem;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .hero { padding: 64px 0 56px; }
+    .hero h1 { font-size: 1.7rem; }
+    .hero p.lead { font-size: 0.98rem; }
+    section { padding: 56px 0; }
+    section h2 { font-size: 1.4rem; }
+    .features .grid,
+    .menu .grid,
+    footer.site .grid {
+      grid-template-columns: 1fr;
+    }
+    .menu-card .photo { height: 140px; }
+    header.site nav a { margin-left: 12px; font-size: 0.85rem; }
+    header.site .logo { font-size: 1rem; }
+    .contact .form { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="inner">
+    <div class="logo">おふくろ亭</div>
+    <nav>
+      <a href="#features">特徴</a>
+      <a href="#menu">メニュー</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <span class="badge">地域に根ざす手作りの味</span>
+    <h1>毎日食べたい、<br><span class="accent">あったかい家庭の味</span>を、お弁当に。</h1>
+    <p class="lead">おふくろ亭は、地元の旬の素材を使った手作り惣菜と日替わり弁当のお店。お仕事の合間にも、ご家族の食卓にも、ほっとする一食をお届けします。</p>
+    <a class="btn" href="#contact">ご予約・お問い合わせ</a>
+  </div>
+</section>
+
+<!-- ===== Features ===== -->
+<section id="features" class="features">
+  <div class="container">
+    <h2>おふくろ亭の3つのこだわり</h2>
+    <p class="sub">「安心」「地元」「飽きない」を毎日に。</p>
+    <div class="grid">
+      <div class="feature-card">
+        <div class="icon">🌿</div>
+        <h3>無添加・手作り</h3>
+        <p>化学調味料・保存料は使いません。だしから手作りした、やさしい味わいです。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🌾</div>
+        <h3>地産地消</h3>
+        <p>地元農家さんから直接仕入れる旬の野菜を使い、その日いちばんの素材でお届けします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🍱</div>
+        <h3>日替わりメニュー</h3>
+        <p>毎日メニューが替わるから、毎日食べても飽きません。今日のお品書きはお店でチェック。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Menu ===== -->
+<section id="menu" class="menu">
+  <div class="container">
+    <h2>本日のおすすめメニュー</h2>
+    <p class="sub">どれもお店の自慢の一品です。</p>
+    <div class="grid">
+      <div class="menu-card">
+        <div class="photo">🍱</div>
+        <div class="body">
+          <h3>日替わり弁当</h3>
+          <p class="desc">主菜・副菜3品・ごはん・お味噌汁付き。毎日ちがう、栄養満点のお弁当。</p>
+          <div class="price">¥780</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="photo">🥢</div>
+        <div class="body">
+          <h3>おまかせ惣菜セット</h3>
+          <p class="desc">季節の手作り惣菜を5品詰め合わせ。ご家庭の食卓にもう一品どうぞ。</p>
+          <div class="price">¥980</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="photo">🍲</div>
+        <div class="body">
+          <h3>季節の煮物</h3>
+          <p class="desc">じっくり煮込んだ旬の野菜と魚。やさしい出汁の香りをご堪能ください。</p>
+          <div class="price">¥520</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>ご予約・お問い合わせ</h2>
+    <p class="sub">お気軽にどうぞ。お電話でもご対応いたします。</p>
+    <form class="form" action="#" method="post" onsubmit="event.preventDefault(); alert('お問い合わせありがとうございます（デモ送信）');">
+      <label for="name">お名前</label>
+      <input id="name" name="name" type="text" required>
+
+      <label for="email">メールアドレス</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="tel">電話番号</label>
+      <input id="tel" name="tel" type="tel">
+
+      <label for="message">お問い合わせ内容</label>
+      <textarea id="message" name="message" required placeholder="例：4月20日に日替わり弁当を3つ予約したいです。"></textarea>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn">送信する</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="site">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>店舗情報</h4>
+        <p>おふくろ亭</p>
+        <p>地域の手作り惣菜・弁当店</p>
+      </div>
+      <div>
+        <h4>営業時間</h4>
+        <p>平日　11:00 – 20:00</p>
+        <p>土日　11:00 – 18:00</p>
+        <p>定休日：水曜</p>
+      </div>
+      <div>
+        <h4>所在地・連絡先</h4>
+        <p>〒000-0000</p>
+        <p>◯◯市△△町1-2-3</p>
+        <p>TEL：00-0000-0000</p>
+      </div>
+    </div>
+    <p class="copy">© おふくろ亭 All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
